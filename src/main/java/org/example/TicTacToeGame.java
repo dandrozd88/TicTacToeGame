@@ -84,9 +84,16 @@ class TicTacToeGame extends Frame implements ActionListener {
     private void resetGame() {
         for (Button btn : button) {
             btn.setLabel("");
+            btn.setEnabled(true);
         }
         playerTurn = true;
         resultLabel.setText("");
+    }
+
+    private void deactivateGameButtons() {
+        for (Button btn : button) {
+            btn.setEnabled(false);
+        }
     }
 
     private void checkWinner() {
@@ -96,6 +103,7 @@ class TicTacToeGame extends Frame implements ActionListener {
                     button[i].getLabel().equals(button[i + 1].getLabel()) &&
                     button[i].getLabel().equals(button[i + 2].getLabel())) {
                 resultLabel.setText(button[i].getLabel() + " wins!");
+                deactivateGameButtons();
                 return;
             }
         }
@@ -106,6 +114,7 @@ class TicTacToeGame extends Frame implements ActionListener {
                     button[i].getLabel().equals(button[i + 3].getLabel()) &&
                     button[i].getLabel().equals(button[i + 6].getLabel())) {
                 resultLabel.setText(button[i].getLabel() + " wins!");
+                deactivateGameButtons();
                 return;
             }
         }
@@ -117,6 +126,7 @@ class TicTacToeGame extends Frame implements ActionListener {
                         button[2].getLabel().equals(button[4].getLabel()) &&
                         button[2].getLabel().equals(button[6].getLabel())) {
             resultLabel.setText(button[4].getLabel() + " wins!");
+            deactivateGameButtons();
             return;
         }
 
